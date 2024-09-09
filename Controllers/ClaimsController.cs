@@ -2,6 +2,7 @@
 
 namespace ContractMonthlyClaimSystem.Controllers
 {
+    //this controle will update claim related input
     public class ClaimsController : Controller
     {
         public IActionResult EditPersonalDetails()
