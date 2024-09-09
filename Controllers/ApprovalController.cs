@@ -2,7 +2,7 @@
 
 namespace ContractMonthlyClaimSystem.Controllers
 {
-    // this controller will control all PC functions regarding the claim
+    // this controller will control all AM functions regarding the claim
     public class ApprovalController : Controller
     {
         public IActionResult ApproveClaims()
