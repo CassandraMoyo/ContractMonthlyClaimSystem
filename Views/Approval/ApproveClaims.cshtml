@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Approve Claims";
+}
+<!--AMs approve claims
+    AMs should be alerted of claims waiting for approval
+   REMOVE SAMPLE DATA IN PART-->
+<div class="table-container">
+    <br />
+    <h3>Approve Claims</h3>
+    <h3>NB!:All claims must be approved within 2 working days of verification submittions</h3>
+    <br />
+    <h3>AM ID</h3>
+    <!--HARD CODE SAMPLE DATA FOR POE, screenshots should have sample data, 5 rows of sample data-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>AM ID</th><!--type cast add ,e.g, AM2034761-->
+                <th>PC ID</th><!--cast PC112230-->
+                <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                <th>Module Code</th>
+                <th>Group</th>
+                <th>Hours Worked</th>
+                <th>Rate</th>
+                <th>Register URL</th>
+                <th>Total</th><!--Hours worked * rate-->
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>AM2034761</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>2</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>360</td>
+                <td>...pending waiting your approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">Approve</button></td>
+                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
+                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
+                -->
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>AM2034761</td>
+                <td>PC112230</td>
+                <td>IC101299</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>3</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>540</td>
+                <td>...pending waiting your approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">Approve</button>
+                </td>
+                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
+                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
+                -->
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>AM2034761</td>
+                <td>PC112233</td>
+                <td>IC101296</td>
+                <td>DATA</td>
+                <td>1</td>
+                <td>1</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>180</td>
+                <td>...pending waiting your approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">Approve</button>
+                </td>
+                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
+                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
+                -->
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>AM2034761</td>
+                <td>PC112230</td>
+                <td>IC101288</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>2</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>360</td>
+                <td>...pending waiting your approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">Approve</button>
+                </td>
+                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
+                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
+                -->
+            </tr>
+        </tbody>
+        <br />
+        <br />
+    </table>
+</div>

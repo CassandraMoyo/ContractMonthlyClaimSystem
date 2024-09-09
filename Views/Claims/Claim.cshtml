@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Submit Claim";
+}
+<!--submit a claim
+   -- assumption is the ICs are already on database
+   --only information concerning this specific IC will be accessable
+   REMOVE SAMPLE DATA IN PART 2
+    -->
+<div class="form-container">
+    <h3>Submit Claims</h3>
+    <h2>Enter claim details and submit claim for process</H2>
+    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h2>
+
+    <form>
+        <div class="field">
+        <h3>IC ID</h3>
+        <!--CLAIM ID add casting,e.g CL001-->
+        <div class="input-field">
+            <label>Claim ID</label>
+            <input type="number" placeholder="CL001" name="CLID" disabled />
+        </div>
+        <!--IC ID add casting, e,g IC101298-->
+        <div class="input-field">
+            <label>IC ID</label>
+            <input type="number" placeholder="IC101298" name="ICID" disabled />
+        </div>
+        <!--Qualification ID and name, options will depeend on assigned qualification -->
+        <div class="input-field">
+            <label>Qualification</label>
+            <select name="QualificationName" name="qualificationName" required>
+                <option value="DISD">Diploma in Software Development</option>
+                <option value="BIT">Bachelor of Infromation in Business Information</option>
+            </select>
+        </div>
+        <!--Module ID and name, option values will depend on assigned modules-->
+        <div class="input-field">
+            <label>Module</label>
+            <select name="ModuleName" name="moduleName" required>
+                <option value="PROG6221">Programming 2B</option>
+            </select>
+        </div>
+        <!--Semester ID and name, option values will depend on time of the year-->
+        <div class="input-field">
+            <label>Semester</label>
+            <select name="Semester" name="semester" disabled>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+        <!--Group ID and name, option values will depend on assigned group-->
+        <div class="input-field">
+            <label>Group</label>
+            <select name="Group" name="group" required>
+                <option value="Group2">Group2</option>
+                <option value="Group3">Group2</option>
+            </select>
+        </div>
+        <!--Lesson date-->
+        <div class="input-field">
+            <label>Lesson Date</label>
+            <input type="date" name="lessonDate"required />
+        </div>
+       <!--Hours Worked-->
+        <div class="input-field">
+            <label>Hour Worked</label>
+            <select name="Rate" name="rate" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <!--Rate per Hour-->
+        <div class="input-field">
+            <label>Rate</label>
+            <input type="number" placeholder="enter your hour rate" name="rate" required />
+        </div>
+        <!--Link to register-->
+        <div class="input-field">
+            <label>Register URL</label>
+            <input type="file" id="fileUpload" name="fileUpload" single>
+      </div>
+    </div>
+           <button class="btn btn-primary" type="submit">Submit Claim</button>
+           <button class="btn btn-primary" type="submit">Clear Form</button>
+        
+     </form>
+</div>

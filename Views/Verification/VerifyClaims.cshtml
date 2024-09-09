@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Verify Claims";
+}
+<!--submit a claim
+   --PCs can verify and deny  submiited claims in tabular format
+   -- PCs should recive an alert for every submitted 
+   --The appropriate PCs fould be notified of claims awaiting verfication on system and via emailil
+   -- There will be a reason for denied claims,ICs will have 2 working days to adjust denied claims and resubmit
+   --PCs can only view ICs under  their assignned qualification
+   --claims will be filtered by qualifications then modules and semester
+   --the submitted claim and adjusted claim should be diffent
+   --reasons for denail - incorrect claim date, incorrect claim register URL,invalid claim hours, invalid claim rate
+   REMOVE SAMPLE DATA IN PART 2
+    -->
+<div class="table-container">
+    <h3>Verify Claims</h3>
+    <br />
+        <h3>Provide reasons of denied claims and send back</h3>
+            <h3>NB!:All claims must be verfied within 3 working days of submittion</h3>
+              <br /> 
+                <h3>IC ID</h3>
+                <!--HARD CODE SAMPLE DATA FOR POE, screenshots should have sample data, 5 rows of sample data-->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>PC ID</th><!--cast PC112230-->
+                            <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                            <th>Module Code</th>
+                            <th>Group</th>
+                            <th>Hours Worked</th>
+                            <th>Rate</th>
+                            <th>Register URL</th>
+                            <th>Total</th><!--Hours worked * rate-->
+                            <th>Status</th>
+                            <th>Action</th>
+                           <!---<th>Reason for Denail</th>--update status to denied sent back for adjustment-->
+                         <!--  <th>Action</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>PC112230</td>
+                            <td>IC101298</td>
+                            <td>PROG</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>180</td>
+                            <td>https://PROGgroup1</td>
+                            <td>360</td>
+                            <td>...verified awaiting AM approval</td>
+                            <td>  <button class="btn btn-primary" type="submit">Verify <!--javascript pop-up message confirming claim verification,e.g You are verifing  Claim with ClaimID 001 -->
+                             <button class="btn btn-primary" type="submit">Deny</td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
+                   </tr>
+            <tr>
+                <td>2</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>3</td>
+                <td>3</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>540</td>
+                <td>...verified awaiting AM approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">
+                        Verify <!--javascript pop-up message confirming claim verification,e.g You are verifing  Claim with ClaimID 001 -->
+                        <button class="btn btn-primary" type="submit">Deny
+                </td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>1</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>360</td>
+                <td>...verified awaiting AM approval</td>
+                <td>
+                    <button class="btn btn-primary" type="submit">
+                        Verify <!--javascript pop-up message confirming claim verification,e.g You are verifing  Claim with ClaimID 001 -->
+                        <button class="btn btn-primary" type="submit">Deny
+                </td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
+            </tr>
+
+                    </tbody>
+                    <br />
+                    <br />
+                    </table>
+                </div>
+   <!--Denied claims-->
+<div class="table-container">
+    <h3>Denied Claims</h3>
+    <table class="table">
+        
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>PC ID</th><!--cast PC112230-->
+                        <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                        <th>Module Code</th>
+                        <th>Group</th>
+                        <th>Hours Worked</th>
+                        <th>Rate</th>
+                        <th>Register URL</th>
+                        <th>Total</th><!--Hours worked * rate-->
+                        <th>Reason for Denial</th><!--update status to denied sent back for adjustment-->
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>PC112230</td>
+                        <td>IC101298</td>
+                        <td>PROG</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>180</td>
+                        <td>https://PROGgroup1</td>
+                        <td>360</td><!--add R-->
+                        <td>
+                <select name="Denail Reason" name="pcStatusUpdate" required>
+                    <option value="ICD">Incorrect claim date</option>
+                    <option value="ICURL">Incorrect claim register URL</option>
+                    <option value="ICHW">Invalid claim hours</option>
+                    <option value="ICR">Invalid claim rate</option>
+                </select></td>
+                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
+                </tr>
+            <tr>
+                <td>2</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>2</td>
+                <td>3</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>540</td><!--add R-->
+                <td>
+                    <select name="Denail Reason" name="pcStatusUpdate" required>
+                        <option value="ICD">Incorrect claim date</option>
+                        <option value="ICURL">Incorrect claim register URL</option>
+                        <option value="ICHW">Invalid claim hours</option>
+                        <option value="ICR">Invalid claim rate</option>
+                    </select>
+                </td>
+                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>2</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>360</td><!--add R-->
+                <td>
+                    <select name="Denail Reason" name="pcStatusUpdate" required>
+                        <option value="ICD">Incorrect claim date</option>
+                        <option value="ICURL">Incorrect claim register URL</option>
+                        <option value="ICHW">Invalid claim hours</option>
+                        <option value="ICR">Invalid claim rate</option>
+                    </select>
+                </td>
+                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
+            </tr>
+                <!---Javascript message informing PC that this claim
+                will be sent back for adjectment, status update ...pending back to IC for adjustment
+                there will be a table for claims needing adjustments, the reference should have minor change to reflect claim status-->
+                </table>
+               </div>

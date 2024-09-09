@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Submitted Claims";
+}
+<!--submit a claim
+   --ICs can view and edit submiited claims in tabular format
+   -- ICs should recive an email with a reference number
+   --The appropriate PCs fould be notified of claims awaiting verfication on system and via emailil
+
+   REMOVE SAMPLE DATA IN PART 2
+    -->
+<div class="table-container">
+    <h3>Submitted Claims</h3>
+    <h3>Cliams can be edited before verfication</H2>
+    <h3>Pay close attention to reason of unverified claims</H2>
+    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h2>
+
+  <h3>IC ID</h3>
+<!--HARD CODE SAMPLE DATA FOR POE, screenshots should have sample data, 5 rows of sample data-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>PC ID</th><!--cast PC112230-->
+                <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                <th>Module Code</th>
+                <th>Group</th>
+                <th>Hours Worked</th>
+                <th>Rate</th>
+                <th>Register URL</th>
+                <th>Total</th><!--Hours worked * rate-->
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>PC112230</td>
+                <td>IC101298</td>
+                <td>PROG</td>
+                <td>1</td>
+                <td>2</td>
+                <td>180</td>
+                <td>https://PROGgroup1</td>
+                <td>360</td>
+                <td>...pending awaiting PC verfication</td>
+                <td>  <button class="btn btn-primary" type="submit">Edit</button></td>
+            </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>PC112230</td>
+                            <td>IC101298</td>
+                            <td>PROG</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>180</td>
+                            <td>https://PROGgroup1</td>
+                            <td>360</td>
+                            <td>...pending awaiting PC verfication</td>
+                            <td>  <button class="btn btn-primary" type="submit">Edit</button></td>
+                        </tr>
+
+        </tbody>
+    </table>
+</div>

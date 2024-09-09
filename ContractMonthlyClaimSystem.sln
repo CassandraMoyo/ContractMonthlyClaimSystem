@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractMonthlyClaimSystem", "ContractMonthlyClaimSystem.csproj", "{CF2DE77A-D8B4-464C-B26D-E89F36605046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractMonthlyClaimSystem", "ContractMonthlyClaimSystem.csproj", "{CF2DE77A-D8B4-464C-B26D-E89F36605046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
