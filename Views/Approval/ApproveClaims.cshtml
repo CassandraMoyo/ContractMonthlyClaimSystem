@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Approve Claims";
 }
+@model IEnumerable<ContractMonthlyClaimSystem.Models.Approval>
+
 <!--AMs approve claims
     AMs should be alerted of claims waiting for approval
     Not a lot is done here, protocol is observed
@@ -108,5 +110,134 @@
         </tbody>
         <br />
         <br />
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Status</th>
+                <th>Qualification</th>
+                <th>Module Name</th>
+                <th>Module Code</th>
+                <th>Group</th>
+                <th>Lesson Date</th>
+                <th>Hours Worked</th>
+                <th>Rate</th>
+                <th>Total</th>
+                <th>Semester</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.FormattedClaimId</td>
+                    <td>@claim.Status</td>
+                    <td>@claim.QualificationName</td>
+                    <td>@claim.ModuleName</td>
+                    <td>@claim.ModuleCode</td>
+                    <td>@claim.Group</td>
+                    <td>@claim.LessonDate</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.Rate</td>
+                    <td>@claim.Total</td>
+                    <td>@claim.Semester</td>
+                    <td>
+                        @if (claim.Status != "Finalized")
+                        {
+                            <form asp-action="FinalizeApproval" method="post">
+                                <input type="hidden" name="id" value="@claim.ClaimId" />
+                                <button type="submit" name="newStatus" value="Finalized">Finalize</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
+
+
+   <table>
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Status</th>
+            <th>Qualification</th>
+            <th>Module Name</th>
+            <th>Module Code</th>
+            <th>Group</th>
+            <th>Lesson Date</th>
+            <th>Hours Worked</th>
+            <th>Rate</th>
+            <th>Total</th>
+            <th>Semester</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.FormattedClaimId</td>
+                <td>@claim.Status</td>
+                <td>@claim.QualificationName</td>
+                <td>@claim.ModuleName</td>
+                <td>@claim.ModuleCode</td>
+                <td>@claim.Group</td>
+                <td>@claim.LessonDate</td>
+                <td>@claim.HoursWorked</td>
+                <td>@claim.Rate</td>
+                <td>@claim.Total</td>
+                <td>@claim.Semester</td>
+                <td>
+                    <form asp-action="FinalizeApproval" method="post">
+                        <input type="hidden" name="id" value="@claim.ClaimId" />
+                        <button type="submit" name="newStatus" value="Approved">Approve</button>
+                    </form>
+                </td>
+              
+            </tr>
+        }
+    </tbody>
+        <table>
+            <thead>
+                <tr>
+                    <th>Claim ID</th>
+                    <th>Status</th>
+                    <th>Qualification</th>
+                    <th>Module Name</th>
+                    <th>Module Code</th>
+                    <th>Group</th>
+                    <th>Lesson Date</th>
+                    <th>Hours Worked</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                    <th>Semester</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.FormattedClaimId</td>
+                        <td>@claim.Status</td>
+                        <td>@claim.QualificationName</td>
+                        <td>@claim.ModuleName</td>
+                        <td>@claim.ModuleCode</td>
+                        <td>@claim.Group</td>
+                        <td>@claim.LessonDate</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.Rate</td>
+                        <td>@claim.Total</td>
+                        <td>@claim.Semester</td>
+                        <td>
+                            @if (claim.Status != "Finalized")
+                            {
+                                <form asp-action="FinalizeApproval" method="post">
+                                    <input type="hidden" name="id" value="@claim.ClaimId" />
+                                    <button type="submit" name="newStatus" value="Finalized">Finalize</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
 </div>

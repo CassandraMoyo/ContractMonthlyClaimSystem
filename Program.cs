@@ -1,7 +1,15 @@
+using ContractMonthlyClaimSystem.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//add database
+builder.Services.AddDbContext<ClaimToDbContext>(options =>
+options.UseInMemoryDatabase("ClaimToDbContext")
+);
 
 var app = builder.Build();
 

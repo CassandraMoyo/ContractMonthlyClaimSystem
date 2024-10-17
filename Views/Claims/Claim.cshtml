@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Submit Claim";
 }
+@model ContractMonthlyClaimSystem.Models.Claims
 <!--submit a claim
    -- assumption is the ICs are already on database
    --only information concerning this specific IC will be accessable
@@ -10,84 +11,102 @@
 <div class="form-container">
     <h3>Submit Claims</h3>
     <h2>Enter claim details and submit claim for process</H2>
-    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h2>
+    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h3>
+    <script src="C:\Users\RC_Student_lab\source\repos\ContractMonthlyClaimSystem\wwwroot\js\site.js"></script>
 
-    <form>
+    <form id="ClaimsForm" asp-action="ClaimsForm" asp-controller="Claims" enctype="multipart/form-data" method="post">
         <div class="field">
-        <h3>IC ID</h3>
+        <h3>Claim ID</h3>
         <!--CLAIM ID add casting,e.g CL001-->
         <div class="input-field">
-            <label>Claim ID</label>
-            <input type="number" placeholder="CL001" name="CLID" disabled />
+           @*<label>Claim ID</label*@
+            <input  class="form-control" type="number" placeholder="CL001" name="CLID" asp-for="ClaimId" asp-for="ClaimId" disabled  />
         </div>
         <!--IC ID add casting, e,g IC101298-->
         <div class="input-field">
             <label>IC ID</label>
-            <input type="number" placeholder="IC101298" name="ICID" disabled />
+            <input class="form-control" type="number" placeholder="IC101298" name="ICID" asp-for="ICID" disabled />
         </div>
         <!--Qualification ID and name, options will depeend on assigned qualification -->
         <div class="input-field">
             <label>Qualification</label>
-            <select name="QualificationName" name="qualificationName" required>
-                <option value="DISD">Diploma in Software Development</option>
-                <option value="BIT">Bachelor of Infromation in Business Information</option>
-            </select>
+             @Html.DropDownListFor(model => model.QualificationName, new List<SelectListItem>
+        {
+            new SelectListItem { Value = "DISD", Text = "Diploma in Software Development" },
+            new SelectListItem { Value = "BIT", Text = "Bachelor of Information in Business Information" }
+        }, new { @class = "form-control", required = "required" })
         </div>
         <!--Module ID and name, option values will depend on assigned modules-->
         <div class="input-field">
             <label>Module</label>
-            <select name="ModuleName" name="moduleName" required>
-                <option value="PROG6221">Programming 2B</option>
-            </select>
+            @Html.DropDownListFor(model => model.ModuleCode, new List<SelectListItem>
+        {
+            new SelectListItem { Value = "PROG6221", Text = "Programming 2B" },
+            new SelectListItem { Value = "DATA6222", Text = "Database 2B" },
+             new SelectListItem { Value = "WEDE6020", Text = "Web Development (Intermediate)" },
+        }, new { @class = "form-control", required = "required" })
         </div>
         <!--Semester ID and name, option values will depend on time of the year-->
         <div class="input-field">
             <label>Semester</label>
-            <select name="Semester" name="semester" disabled>
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
+              @Html.DropDownListFor(model => model.Semester, 
+            new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "1" },
+                new SelectListItem { Value = "2", Text = "2" }
+            }, 
+            new { @class = "form-control", @disabled = "disabled" })
         </div>
         <!--Group ID and name, option values will depend on assigned group-->
         <div class="input-field">
             <label>Group</label>
-            <select name="Group" name="group" required>
-                <option value="Group2">Group2</option>
-                <option value="Group3">Group2</option>
-            </select>
+            @Html.DropDownListFor(model => model.Group, new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Group1", Text = "Group1" },
+                new SelectListItem { Value = "Group2", Text = "Group2" },
+                new SelectListItem { Value = "Group3", Text = "Group3" }
+            }, 
+            new { @class = "form-control", required = "required" })
+
         </div>
         <!--Lesson date-->
         <div class="input-field">
             <label>Lesson Date</label>
-            <input type="date" name="lessonDate"required />
+            <input class="form-control" type="date" name="LessonDate" asp-for="LessonDate" required />
         </div>
        <!--Hours Worked-->
         <div class="input-field">
-            <label>Hour Worked</label>
-            <select name="Rate" name="rate" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-            </select>
-        </div>
+    <label>Hour Worked</label>
+    @Html.DropDownListFor(model => model.HoursWorked, 
+            new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "1" },
+                new SelectListItem { Value = "2", Text = "2" },
+                new SelectListItem { Value = "3", Text = "3" },
+            }, 
+            new { @class = "form-control", required = "required" })
+</div>
         <!--Rate per Hour-->
         <div class="input-field">
             <label>Rate</label>
-            <input type="number" placeholder="enter your hour rate" name="rate" required />
+            <input class="form-control" type="number" placeholder="Enter your hourly rate" asp-for="Rate" required />
         </div>
         <!--Link to register-->
+         <!--Link to corresponding claim-->
+          <!--add upload button and the file name should be displayed,
+          limit file size(no more than 5mb), add image extenstions,
+          track status after submission, view claim and document, it will update as it progress, add progress bar,
+          unit test the functions- iAction Results,try and catch for error handling-exception handling, save uploads to a file
+          use in memory database, login funtionality is for part3,create reports for part 3-->
         <div class="input-field">
             <label>Register URL</label>
-            <input type="file" id="fileUpload" name="fileUpload" single>
+            <input class="form-control" type="file" id="fileUpload" name="FileUpload" required/> 
       </div>
     </div>
-           <button class="btn btn-primary" type="submit">Submit Claim</button>
-           <button class="btn btn-primary" type="submit">Clear Form</button>
-        
+               <button class="btn btn-primary" type="submit" id="submitButton" onclick="submitFormWithConfirmation()">Submit</button>
+               <button class="btn btn-primary" type="button" onclick="confirmClearForm()">Clear Form</button>
+
+   
      </form>
+     
 </div>

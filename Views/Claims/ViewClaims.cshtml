@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Submitted Claims";
 }
+@model List<Claims>
 <!--submit a claim
    --ICs can view and edit submiited claims in tabular format
    -- ICs should recive an email with a reference number --maybe add ref num to PC view
@@ -9,24 +10,27 @@
     -->
 <div class="table-container">
     <h3>Submitted Claims</h3>
-    <h3>Cliams can be edited before verfication</H2>
-    <h3>Pay close attention to reason of unverified claims</H2>
-    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h2>
+    <h3>Cliams can be edited before verfication</h3>
+    <h3>Pay close attention to reason of unverified claims</h3>
+    <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h3>
 
   <h3>IC ID</h3>
 <!--HARD CODE SAMPLE DATA FOR POE, screenshots should have sample data, 5 rows of sample data-->
     <table class="table">
         <thead>
             <tr>
-                <th>No</th>
+                <th>Claim ID</th>
                 <th>PC ID</th><!--cast PC112230-->
                 <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                <th>Qualification</th>
                 <th>Module Code</th>
+                <th>Semester</th>
                 <th>Group</th>
+                <th>Lesson Date</th>
                 <th>Hours Worked</th>
                 <th>Rate</th>
-                <th>Register URL</th>
                 <th>Total</th><!--Hours worked * rate-->
+                <th>Register URL</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -58,6 +62,46 @@
                             <td>...pending awaiting PC verfication</td>
                             <td>  <button class="btn btn-primary" type="submit">Edit</button></td>
                         </tr>
+            @{
+                foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.FormattedClaimId</td>
+                        <td>@claim.PCID</td><!-- Example PC ID -->
+                        <td>@claim.ICID</td><!-- Example IC ID -->
+                        <td>@claim.QualificationName</td>
+                        <td>@claim.ModuleCode</td>
+                        <td>@claim.Semester</td>
+                        <td>@claim.Group</td>
+                        <td>@claim.LessonDate</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.Rate</td>
+                        <td>@claim.Total.ToString("C", new System.Globalization.CultureInfo("en-ZA")) </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(claim.FileName))
+                            {
+                                <a href="@(Url.Content("~/claim docs/" + claim.FormattedClaimId + "/" + claim.FileName))" target="_blank">
+                                    @claim.FileName
+                                </a>
+                            }
+                        </td>
+                        <td>@claim.Status</td>
+                        <td>
+                            <!--link to form, return the Id of expense to be edited or deleted-->
+                            <button class="btn btn-primary" type="button" onclick="confirmEditForm('@Url.Action("Edit", new { id = claim.ClaimId })')">Edit</button>
+
+
+                            <!--sent to action result-->
+                        </td>
+                        <!-- <td@expense.Action</td><select name="status" onchange="this.form.submit()">
+                            <option value="Pending" selected="@claim.Status == " Pending"">Pending</option>
+                            <option value="Approved" selected="@claim.Status == " Approved"">Approved</option>
+                            <option value="Rejected" selected="@claim.Status == " Rejected"">Rejected</option>
+                        </select>-->
+                    </tr>
+                }
+            }
+          
 
         </tbody>
     </table>

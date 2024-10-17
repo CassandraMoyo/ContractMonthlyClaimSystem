@@ -74,7 +74,7 @@ body {
     width: 100%;
     padding: 33px;
     margin: 0 17px;
-    border-radius: 10px;
+    border-radius: 8px;
     height:100%;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
 }
@@ -114,7 +114,13 @@ form .input-field input ,select{
     border-radius: 4px;
     margin:10px 0;
 }
-.input-field input:is(:focus, :valid){
+.input-field input:focus,
+.input-field select:focus {
+    background-color: #ffffff; /* background color remains white when focused */
+    outline: none; 
+    border: 1px solid rgba(0,0,0,0.4); 
+}
+.input-field input:is(:focus, :valid) {
     box-shadow: 0 4px 8px #32373b;
 }
 /*table*/
