@@ -20,7 +20,6 @@ namespace ContractMonthlyClaimSystem.Controllers
                                  {
                                      ClaimId = claim.ClaimId,
                                      QualificationName = claim.QualificationName,
-                                     ModuleName = claim.ModuleName,
                                      ModuleCode = claim.ModuleCode,
                                      Group = claim.Group,
                                      LessonDate = claim.LessonDate,
@@ -44,7 +43,6 @@ namespace ContractMonthlyClaimSystem.Controllers
             {
                 ClaimId = claim.ClaimId,
                 QualificationName = claim.QualificationName,
-                ModuleName = claim.ModuleName,
                 ModuleCode = claim.ModuleCode,
                 Group = claim.Group,
                 LessonDate = claim.LessonDate,

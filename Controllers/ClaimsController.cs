@@ -134,7 +134,7 @@ namespace ContractMonthlyClaimSystem.Controllers
                 claimToUpdate.HoursWorked = model.HoursWorked;
                 claimToUpdate.FileUpload = model.FileUpload;
 
-                _context.SaveChanges(); // Save changes
+                _context.SaveChanges();
                 return RedirectToAction("ViewClaims", "Verification");
             }
             return View("Claim", model);
@@ -161,26 +161,7 @@ namespace ContractMonthlyClaimSystem.Controllers
             return View(claims);
         }
 
-        public IActionResult VerifyClaims(Claims model)
-        {
-            if (model == null)
-            {
-                model = new Claims();
-            }
-
-            var claims = _context.Claims.ToList();
-            string status = model.Status;
-            string selectedQualification = model.QualificationName;
-            string selectedModule = model.ModuleCode;
-            int? selectedSemester = model.Semester;
-            string selectedGroup = model.Group;
-            DateOnly lessonDate = model.LessonDate;
-            int hoursWorked = model.HoursWorked;
-            decimal rate = model.Rate;
-
-            return View(claims);
-        }
-        [HttpPost]
+        //edit exisiting claim
         [HttpPost]
     public IActionResult EditClaim(Claims model, int claimId)
     {
@@ -195,7 +176,6 @@ namespace ContractMonthlyClaimSystem.Controllers
 
             // Update properties
             existingClaim.QualificationName = model.QualificationName;
-            existingClaim.ModuleName = model.ModuleName;
             existingClaim.ModuleCode = model.ModuleCode;
             existingClaim.Group = model.Group;
             existingClaim.LessonDate = model.LessonDate;
