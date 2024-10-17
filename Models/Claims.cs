@@ -12,7 +12,6 @@ namespace ContractMonthlyClaimSystem.Models
         [MaxLength(100)]
 
         public string QualificationName { get; set; } = "";
-        public string ModuleName { get; set; } = "";
         public string ModuleCode { get; set; } = "";
         public string Group { get; set; } = "";
 
@@ -35,7 +34,7 @@ namespace ContractMonthlyClaimSystem.Models
         }
 
 
-        // Navigation property for Verification
+        // flow into Verification model
         public virtual ICollection<Verification> Verifications { get; set; }
     }
 }
