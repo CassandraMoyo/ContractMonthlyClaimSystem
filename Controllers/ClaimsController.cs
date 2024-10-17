@@ -141,7 +141,7 @@ namespace ContractMonthlyClaimSystem.Controllers
         }
 
 
-
+        //list view of submitted claim
         public IActionResult ViewClaims(Claims model)
         {
             if (model == null)

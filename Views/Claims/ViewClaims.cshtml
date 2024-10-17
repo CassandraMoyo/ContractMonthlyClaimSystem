@@ -49,19 +49,6 @@
                 <td>...pending awaiting PC verfication</td>
                 <td>  <button class="btn btn-primary" type="submit">Edit</button></td>
             </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>PC112230</td>
-                            <td>IC101298</td>
-                            <td>PROG</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>180</td>
-                            <td>https://PROGgroup1</td>
-                            <td>360</td>
-                            <td>...pending awaiting PC verfication</td>
-                            <td>  <button class="btn btn-primary" type="submit">Edit</button></td>
-                        </tr>
             @{
                 foreach (var claim in Model)
                 {
@@ -91,13 +78,7 @@
                             <button class="btn btn-primary" type="button" onclick="confirmEditForm('@Url.Action("Edit", new { id = claim.ClaimId })')">Edit</button>
 
 
-                            <!--sent to action result-->
                         </td>
-                        <!-- <td@expense.Action</td><select name="status" onchange="this.form.submit()">
-                            <option value="Pending" selected="@claim.Status == " Pending"">Pending</option>
-                            <option value="Approved" selected="@claim.Status == " Approved"">Approved</option>
-                            <option value="Rejected" selected="@claim.Status == " Rejected"">Rejected</option>
-                        </select>-->
                     </tr>
                 }
             }
