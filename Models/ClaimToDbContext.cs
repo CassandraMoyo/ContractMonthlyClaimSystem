@@ -5,6 +5,9 @@ namespace ContractMonthlyClaimSystem.Models
 {
     public class ClaimToDbContext : DbContext
     {
+        //connect to db
+
+        //used in memory databased
         public DbSet<Claims> Claims { get; set; }//database creation
         public DbSet<Verification> Verifications { get; set; }
         public DbSet<Approval> Approvals { get; set; }
