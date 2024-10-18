@@ -64,11 +64,11 @@
                     </td>
                     <td>@claim.Status</td>
                     <td>
-                        @if (claim.Status != "Finalized")
+                        @if (claim.Status != "Approved by AC")
                         {
                             <form asp-action="FinalizeApproval" method="post">
                                 <input type="hidden" name="id" value="@claim.ClaimId" />
-                                <button class="btn btn-secondary  btn-sm" type="submit" name="newStatus" value="Finalized">Finalize</button>
+                                <button class="btn btn-secondary  btn-sm" type="submit" name="newStatus" value="Finalized" onclick="return confirmFinalize();">Finalize</button>
                             </form>
                         }
                     </td>

@@ -34,5 +34,8 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //http post for the register from the form
+        [HttpPost]
     }
 }

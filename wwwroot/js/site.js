@@ -22,10 +22,22 @@ function confirmEditForm(url) {
     if (confirm("Are you sure you want to edit this claim?")) {
         window.location.href = url;
     }
-}
-
+}//reason for denying to verify claim
 function showDenialReason(button) {
+    
     event.preventDefault();
     const claimId = button.closest("form").querySelector("input[name='id']").value;
     document.getElementById(`denialForm-${claimId}`).style.display = "block";
+    return confirm('This claim will reflect as denied,please state the reason!');
 }
+//verify claim(PC)
+function showVerifiedMessage() {
+    return confirm('Are you sure you want to verify this claim!');
+}
+
+//final status update by academic manager
+function confirmFinalize() {
+    return confirm('Are you sure you want to finalize this claim?');
+}
+
+//pop up messages

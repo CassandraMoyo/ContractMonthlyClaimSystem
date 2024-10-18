@@ -12,6 +12,8 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
+        //only verified claims appear in academic manager view
         public IActionResult ApproveClaims()
         {
             var claims = _context.Claims
@@ -33,7 +35,7 @@ namespace ContractMonthlyClaimSystem.Controllers
 
             return View(claims);
         }
-
+        //academic manager approval
          [HttpPost]
     public IActionResult FinalizeApproval(int id)
     {
@@ -54,11 +56,11 @@ namespace ContractMonthlyClaimSystem.Controllers
                 PCID = claim.PCID,
                 Total = claim.Total,
                 Semester = claim.Semester,
-                Status = "Finalized"
+                Status = "Approved by AC"
             };
 
             _context.Approvals.Add(approvedClaim);
-            claim.ChangeStatus("Finalized");
+            claim.ChangeStatus("Approved by AC");
             _context.SaveChanges();
         }
 
