@@ -17,135 +17,58 @@
     <table class="table">
         <thead>
             <tr>
-                <th>No</th>
-                <th>AM ID</th><!--type cast add ,e.g, AM2034761-->
-                <th>PC ID</th><!--cast PC112230-->
-                <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
-                <th>Module Code</th>
-                <th>Group</th>
-                <th>Hours Worked</th>
-                <th>Rate</th>
-                <th>Register URL</th>
-                <th>Total</th><!--Hours worked * rate-->
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
             <tr>
-                <td>1</td>
-                <td>AM2034761</td>
-                <td>PC112230</td>
-                <td>IC101298</td>
-                <td>PROG</td>
-                <td>1</td>
-                <td>2</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>360</td>
-                <td>...pending waiting your approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Approve</button></td>
-                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
-                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
-                -->
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>AM2034761</td>
-                <td>PC112230</td>
-                <td>IC101299</td>
-                <td>PROG</td>
-                <td>1</td>
-                <td>3</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>540</td>
-                <td>...pending waiting your approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Approve</button>
-                </td>
-                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
-                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
-                -->
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>AM2034761</td>
-                <td>PC112233</td>
-                <td>IC101296</td>
-                <td>DATA</td>
-                <td>1</td>
-                <td>1</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>180</td>
-                <td>...pending waiting your approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Approve</button>
-                </td>
-                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
-                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
-                -->
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>AM2034761</td>
-                <td>PC112230</td>
-                <td>IC101288</td>
-                <td>PROG</td>
-                <td>1</td>
-                <td>2</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>360</td>
-                <td>...pending waiting your approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Approve</button>
-                </td>
-                <!--javascrip warning, e.g You are about to approve Claim with CliamID 001,
-                    this will trigger a date on when payment will be made in IC view and status will be paid in the PC view
-                -->
-            </tr>
-        </tbody>
-        <br />
-        <br />
-        <thead>
-            <tr>
+                <th>Approval ID</th>
+                <th>Verification ID</th>
                 <th>Claim ID</th>
-                <th>Status</th>
+                <th>PC ID</th>
+                <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
                 <th>Qualification</th>
-                <th>Module Name</th>
                 <th>Module Code</th>
+                <th>Semester</th>
                 <th>Group</th>
                 <th>Lesson Date</th>
                 <th>Hours Worked</th>
                 <th>Rate</th>
-                <th>Total</th>
-                <th>Semester</th>
+                <th>Total</th><!--Hours worked * rate-->
+                <th>Register URL</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
             </tr>
         </thead>
         <tbody>
             @foreach (var claim in Model)
             {
                 <tr>
+                    <td>@claim.FormattedApprovalID</td>
+                    <td>@claim.FormattedVerificationId</td>
                     <td>@claim.FormattedClaimId</td>
-                    <td>@claim.Status</td>
+                    <td>@claim.PCID</td>
+                    <td>@claim.ICID</td>
                     <td>@claim.QualificationName</td>
-                    <td>@claim.ModuleName</td>
                     <td>@claim.ModuleCode</td>
+                    <td>@claim.Semester</td>
                     <td>@claim.Group</td>
                     <td>@claim.LessonDate</td>
                     <td>@claim.HoursWorked</td>
                     <td>@claim.Rate</td>
-                    <td>@claim.Total</td>
-                    <td>@claim.Semester</td>
+                    <td>@claim.Total.ToString("C", new System.Globalization.CultureInfo("en-ZA")) </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(claim.FileName))
+                        {
+                            <a href="@(Url.Content("~/claim docs/" + claim.FormattedClaimId + "/" + claim.FileName))" target="_blank">
+                                @claim.FileName
+                            </a>
+                        }
+                    </td>
+                    <td>@claim.Status</td>
                     <td>
                         @if (claim.Status != "Finalized")
                         {
                             <form asp-action="FinalizeApproval" method="post">
                                 <input type="hidden" name="id" value="@claim.ClaimId" />
-                                <button type="submit" name="newStatus" value="Finalized">Finalize</button>
+                                <button class="btn btn-secondary  btn-sm" type="submit" name="newStatus" value="Finalized">Finalize</button>
                             </form>
                         }
                     </td>
@@ -153,91 +76,4 @@
             }
         </tbody>
     </table>
-
-
-   <table>
-    <thead>
-        <tr>
-            <th>Claim ID</th>
-            <th>Status</th>
-            <th>Qualification</th>
-            <th>Module Name</th>
-            <th>Module Code</th>
-            <th>Group</th>
-            <th>Lesson Date</th>
-            <th>Hours Worked</th>
-            <th>Rate</th>
-            <th>Total</th>
-            <th>Semester</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var claim in Model)
-        {
-            <tr>
-                <td>@claim.FormattedClaimId</td>
-                <td>@claim.Status</td>
-                <td>@claim.QualificationName</td>
-                <td>@claim.ModuleName</td>
-                <td>@claim.ModuleCode</td>
-                <td>@claim.Group</td>
-                <td>@claim.LessonDate</td>
-                <td>@claim.HoursWorked</td>
-                <td>@claim.Rate</td>
-                <td>@claim.Total</td>
-                <td>@claim.Semester</td>
-                <td>
-                    <form asp-action="FinalizeApproval" method="post">
-                        <input type="hidden" name="id" value="@claim.ClaimId" />
-                        <button type="submit" name="newStatus" value="Approved">Approve</button>
-                    </form>
-                </td>
-              
-            </tr>
-        }
-    </tbody>
-        <table>
-            <thead>
-                <tr>
-                    <th>Claim ID</th>
-                    <th>Status</th>
-                    <th>Qualification</th>
-                    <th>Module Name</th>
-                    <th>Module Code</th>
-                    <th>Group</th>
-                    <th>Lesson Date</th>
-                    <th>Hours Worked</th>
-                    <th>Rate</th>
-                    <th>Total</th>
-                    <th>Semester</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var claim in Model)
-                {
-                    <tr>
-                        <td>@claim.FormattedClaimId</td>
-                        <td>@claim.Status</td>
-                        <td>@claim.QualificationName</td>
-                        <td>@claim.ModuleName</td>
-                        <td>@claim.ModuleCode</td>
-                        <td>@claim.Group</td>
-                        <td>@claim.LessonDate</td>
-                        <td>@claim.HoursWorked</td>
-                        <td>@claim.Rate</td>
-                        <td>@claim.Total</td>
-                        <td>@claim.Semester</td>
-                        <td>
-                            @if (claim.Status != "Finalized")
-                            {
-                                <form asp-action="FinalizeApproval" method="post">
-                                    <input type="hidden" name="id" value="@claim.ClaimId" />
-                                    <button type="submit" name="newStatus" value="Finalized">Finalize</button>
-                                </form>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
 </div>

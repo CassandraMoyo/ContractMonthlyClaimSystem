@@ -25,6 +25,7 @@ namespace ContractMonthlyClaimSystem.Controllers
                                      LessonDate = claim.LessonDate,
                                      Rate = claim.Rate,
                                      HoursWorked = claim.HoursWorked,
+                                     FileName = claim.FileName,
                                      Total = claim.Total,
                                      Semester = claim.Semester,
                                      Status = claim.Status

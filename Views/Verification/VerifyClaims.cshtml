@@ -87,8 +87,8 @@
                     <td>
                         <form asp-action="ChangeStatus" method="post">
                             <input type="hidden" name="id" value="@verify.ClaimId" />
-                            <button class="btn btn-primary" type="submit" name="newStatus" value="Approved">Approve</button>
-                            <button class="btn btn-primary" type="submit" name="newStatus" value="Rejected" onclick="showDenialReason(this)">Reject</button>
+                            <button class="btn btn-secondary btn-sm" type="submit" name="newStatus" value="Approved">Approve</button>
+                            <button class="btn btn-secondary  btn-sm" type="submit" name="newStatus" value="Rejected" onclick="showDenialReason(this)">Reject</button>
                         </form>
                         <form asp-action="ChangeStatus" id="denialForm-@verify.ClaimId" style="display:none;" method="post">
                             <input type="hidden" name="id" value="@verify.ClaimId" />
@@ -99,7 +99,7 @@
                                 <option value="ICHW">Invalid claim hours</option>
                                 <option value="ICR">Invalid claim rate</option>
                             </select>
-                            <button class="btn btn-secondary" type="submit">Submit</button>
+                            <button class="btn btn-secondary  btn-sm" type="submit">Submit</button>
                         </form>
                     </td>
                 </tr>
