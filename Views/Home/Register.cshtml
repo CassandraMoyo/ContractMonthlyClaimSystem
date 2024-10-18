@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Register";
 }
+@model ContractMonthlyClaimSystem.Models.Register
 <!--Users will enter their personal details and role
     these details will be inserted to the db 
     must be on the edit page of IC personal details
@@ -39,14 +40,15 @@
                 <label>Password</label>
                 <input type="password" placeholder="*****" name="password" required />
             </div>
-            <div class="input-field">
-                <label>Role</label>
-                <select name="usertype" required>
-                    <option value="Independent Contractor">Independent Contractor</option>
-                    <option value="Project Coordinator">Project Coordinator</option>
-                    <option value="Academic Manager">Academic Manager</option>
-                </select>
-            </div>
+                <div class="input-field">
+                    <label>Role</label>
+                    @Html.DropDownListFor(model => model.Role, new List<SelectListItem>
+                    {
+                    new SelectListItem { Value = "Independent Contractor", Text = "Independent Contractor" },
+                    new SelectListItem { Value = "Project Coordinator", Text = "Project Coordinator" },
+                    new SelectListItem { Value = "Academic Manager", Text = "Academic Manager" },
+                    }, new { @class = "form-control", required = "required" })
+                </div>
             </div>
           <button class="btn btn-primary" type="submit">Save & Sumbit</button>
          <button class="btn btn-primary" type="submit">Back</button>

@@ -20,6 +20,9 @@ namespace ContractMonthlyClaimSystem.Controllers
 
         public IActionResult Register()
         {
+            //password
+            var user = new RegisterUserToDb();
+            user.SetPassword(model.Password);
             return View();
         }
         public IActionResult Login()
@@ -27,7 +30,7 @@ namespace ContractMonthlyClaimSystem.Controllers
             return View();
         }
 
-      
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -35,7 +38,5 @@ namespace ContractMonthlyClaimSystem.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //http post for the register from the form
-        [HttpPost]
     }
 }

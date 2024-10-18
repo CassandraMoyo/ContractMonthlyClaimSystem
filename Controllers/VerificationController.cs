@@ -1,4 +1,5 @@
-﻿using ContractMonthlyClaimSystem.Models;
+﻿using ContractMonthlyClaimSystem.Connection;
+using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 //PCs approve claims or deny with reason

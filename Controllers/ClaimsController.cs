@@ -1,4 +1,5 @@
-﻿using ContractMonthlyClaimSystem.Models;
+﻿using ContractMonthlyClaimSystem.Connection;
+using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;

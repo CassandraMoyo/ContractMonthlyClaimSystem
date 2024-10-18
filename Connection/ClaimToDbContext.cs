@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ContractMonthlyClaimSystem.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContractMonthlyClaimSystem.Models
+namespace ContractMonthlyClaimSystem.Connection
 {
     public class ClaimToDbContext : DbContext
     {
@@ -26,5 +27,5 @@ namespace ContractMonthlyClaimSystem.Models
                 .IsRequired(false); // Make DenialReason optional
         }
     }
- }
+}
 
