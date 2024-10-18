@@ -27,18 +27,20 @@
                     <thead>
                         <tr>
                             <th>Verification ID</th>
-                            <th>PC ID</th><!--cast PC112230-->
+                            <th>Claim ID</th>
+                           <!-- <th>PC ID</th>cast PC112230-->
                             <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
+                            <th>Qualification</th>
                             <th>Module Code</th>
+                            <th>Semester</th>
                             <th>Group</th>
+                            <th>Lesson Date</th>
                             <th>Hours Worked</th>
                             <th>Rate</th>
-                            <th>Register URL</th>
                             <th>Total</th><!--Hours worked * rate-->
+                            <th>Register URL</th>
                             <th>Status</th>
                             <th>Action</th>
-                           <!---<th>Reason for Denail</th>--update status to denied sent back for adjustment-->
-                         <!--  <th>Action</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -59,208 +61,49 @@
 
                              </td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
                    </tr>
-            <tr>
-                <td>2</td>
-                <td>PC112230</td>
-                <td>IC101298</td>
-                <td>PROG</td>
-                <td>3</td>
-                <td>3</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>540</td>
-                <td>...verified awaiting AM approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">
-                        Verify <!--javascript pop-up message confirming claim verification,e.g You are verifing  Claim with ClaimID 001 -->
-                        <button class="btn btn-primary" type="submit">Deny</button>
-                </td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>PC112230</td>
-                <td>IC101298</td>
-                <td>PROG</td>
-                <td>1</td>
-                <td>1</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>360</td>
-                <td>...verified awaiting AM approval</td>
-                <td>
-                    <button class="btn btn-primary" type="submit">
-                        Verify <!--javascript pop-up message confirming claim verification,e.g You are verifing  Claim with ClaimID 001 -->
-                        <button class="btn btn-primary" type="submit">Deny</button>
-                </td><!--javascrip warning, e.g You are about to deny Claim with CliamID 001,remeber to specify reason to trigger adjustment-->
-            </tr>
-
-                    </tbody>
-                    <br />
-                    <br />
-                    </table>
-                </div>
-   <!--Denied claims-->
-<div class="table-container">
-    <h3>Denied Claims</h3>
-    <table class="table">
-        
-          <thead>
-            <tr>
-                <th>No</th>
-                <th>PC ID</th><!--cast PC112230-->
-                <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
-                <th>Module Code</th>
-                <th>Group</th>
-                <th>Hours Worked</th>
-                <th>Rate</th>
-                <th>Register URL</th>
-                <th>Total</th><!--Hours worked * rate-->
-                <th>Status</th>
-                <th>Action</th>
-                <!---<th>Reason for Denail</th>--update status to denied sent back for adjustment-->
-                <!--  <th>Action</th>-->
-            </tr>
-          </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>PC112230</td>
-                        <td>IC101298</td>
-                        <td>PROG</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>180</td>
-                        <td>https://PROGgroup1</td>
-                        <td>360</td><!--add R-->
-                        <td>
-                <select name="Denail Reason" name="pcStatusUpdate" required>
-                    <option value="ICD">Incorrect claim date</option>
-                    <option value="ICURL">Incorrect claim register URL</option>
-                    <option value="ICHW">Invalid claim hours</option>
-                    <option value="ICR">Invalid claim rate</option>
-                </select></td>
-                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
-                </tr>
-            <tr>
-                <td>2</td>
-                <td>PC112230</td>
-                <td>IC101298</td>
-                <td>PROG</td>
-                <td>2</td>
-                <td>3</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>540</td><!--add R-->
-                <td>
-                    <select name="Denail Reason" name="pcStatusUpdate" required>
-                        <option value="ICD">Incorrect claim date</option>
-                        <option value="ICURL">Incorrect claim register URL</option>
-                        <option value="ICHW">Invalid claim hours</option>
-                        <option value="ICR">Invalid claim rate</option>
-                    </select>
-                </td>
-                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>PC112230</td>
-                <td>IC101298</td>
-                <td>PROG</td>
-                <td>1</td>
-                <td>2</td>
-                <td>180</td>
-                <td>https://PROGgroup1</td>
-                <td>360</td><!--add R-->
-                <td>
-                    <select name="Denail Reason" name="pcStatusUpdate" required>
-                        <option value="ICD">Incorrect claim date</option>
-                        <option value="ICURL">Incorrect claim register URL</option>
-                        <option value="ICHW">Invalid claim hours</option>
-                        <option value="ICR">Invalid claim rate</option>
-                    </select>
-                </td>
-                <td>  <button class="btn btn-primary" type="submit">Adjust</button></td>
-            </tr>
-                <!---Javascript message informing PC that this claim
-                will be sent back for adjectment, status update ...pending back to IC for adjustment
-                there will be a table for claims needing adjustments, the reference should have minor change to reflect claim status-->
-            @foreach (var verify  in Model)
+            @foreach (var verify in Model)
             {
-               <tr>
-                <td>@verify.FormattedClaimId</td>
-                <td>@verify.Status</td>
-                <td>@verify.QualificationName</td>
-                <td>@verify.ModuleName</td>
-                <td>@verify.ModuleCode</td>
-                <td>@verify.Group</td>
-                <td>@verify.LessonDate</td>
-                <td>@verify.HoursWorked</td>
-                <td>@verify.Rate</td>
-                <td>@verify.Total</td>
-                <td>@verify.Semester</td>
-                <td>
-                    <form asp-action="ChangeStatus">
-                        <input type="hidden" name="id" value="@verify.ClaimId" />
-                        <button type="submit" name="newStatus" value="Approved">Approve</button>
-                        <button type="submit" name="newStatus" value="Rejected">Reject</button>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td>@verify.FormattedVerificationId</td>
+                    <td>@verify.FormattedClaimId</td>
+                    <td>@verify.ICID</td>
+                    <td>@verify.QualificationName</td>
+                    <td>@verify.ModuleCode</td>
+                    <td>@verify.Semester</td>
+                    <td>@verify.Group</td>
+                    <td>@verify.LessonDate</td>
+                    <td>@verify.HoursWorked</td>
+                    <td>@verify.Rate</td>
+                    <td>@verify.Total.ToString("C", new System.Globalization.CultureInfo("en-ZA")) </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(verify.FileName))
+                        {
+                            <a href="@(Url.Content("~/claim docs/" + verify.FormattedClaimId + "/" + verify.FileName))" target="_blank">
+                                @verify.FileName
+                            </a>
+                        }
+                    </td>
+                    <td>@verify.Status</td>
+                    <td>
+                        <form asp-action="ChangeStatus" method="post">
+                            <input type="hidden" name="id" value="@verify.ClaimId" />
+                            <button class="btn btn-primary" type="submit" name="newStatus" value="Approved">Approve</button>
+                            <button class="btn btn-primary" type="submit" name="newStatus" value="Rejected" onclick="showDenialReason(this)">Reject</button>
+                        </form>
+                        <form asp-action="ChangeStatus" id="denialForm-@verify.ClaimId" style="display:none;" method="post">
+                            <input type="hidden" name="id" value="@verify.ClaimId" />
+                            <input type="hidden" name="newStatus" value="Rejected" />
+                            <select name="denialReason" required>
+                                <option value="ICD">Incorrect claim date</option>
+                                <option value="ICURL">Incorrect claim register URL</option>
+                                <option value="ICHW">Invalid claim hours</option>
+                                <option value="ICR">Invalid claim rate</option>
+                            </select>
+                            <button class="btn btn-secondary" type="submit">Submit</button>
+                        </form>
+                    </td>
+                </tr>
             }
-                  </tbody>
-    </table>
-    <table>
-    <thead>
-        <tr>
-            <th>Claim ID</th>
-            <th>Status</th>
-            <th>Qualification</th>
-            <th>Module Name</th>
-            <th>Module Code</th>
-            <th>Group</th>
-            <th>Lesson Date</th>
-            <th>Hours Worked</th>
-            <th>Rate</th>
-            <th>Total</th>
-            <th>Semester</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var verify in Model)
-        {
-            <tr>
-                <td>@verify.FormattedClaimId</td>
-                <td>@verify.Status</td>
-                <td>@verify.QualificationName</td>
-                <td>@verify.ModuleName</td>
-                <td>@verify.ModuleCode</td>
-                <td>@verify.Group</td>
-                <td>@verify.LessonDate</td>
-                <td>@verify.HoursWorked</td>
-                <td>@verify.Rate</td>
-                <td>@verify.Total</td>
-                <td>@verify.Semester</td>
-                <td>
-                    <form asp-action="ChangeStatus" method="post">
-                        <input type="hidden" name="id" value="@verify.ClaimId" />
-                        <button type="submit" name="newStatus" value="Approved">Approve</button>
-                        <button type="submit" name="newStatus" value="Rejected" onclick="showDenialReason(this)">Reject</button>
-                    </form>
-                    <form asp-action="ChangeStatus" id="denialForm-@verify.ClaimId" style="display:none;" method="post">
-                        <input type="hidden" name="id" value="@verify.ClaimId" />
-                        <input type="hidden" name="newStatus" value="Rejected" />
-                        <select name="denialReason" required>
-                            <option value="ICD">Incorrect claim date</option>
-                            <option value="ICURL">Incorrect claim register URL</option>
-                            <option value="ICHW">Invalid claim hours</option>
-                            <option value="ICR">Invalid claim rate</option>
-                        </select>
-                        <button type="submit">Submit</button>
-                    </form>
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 </div>
