@@ -3,39 +3,36 @@
 *@
 @{
 }
+@model IEnumerable<ContractMonthlyClaimSystem.Models.RegisterUserToDb>
 <!--registered user details-->
  <table class="table">
                     <thead>
                         <tr>
                             <th>RegID</th>
                             <th>Name</th>
-             
-                            <th>IC ID</th><!--IC ID add casting, e,g IC101298-->
-                            <th>Qualification</th>
-                            <th>Module Code</th>
-                            <th>Semester</th>
-                            <th>Group</th>
-                            <th>Lesson Date</th>
-                            <th>Hours Worked</th>
-                            <th>Rate</th>
-                            <th>Total</th><!--Hours worked * rate-->
-                            <th>Register URL</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Surname</th>
+                            <th>Contact</th>
+                            <th>Address</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                     <tbody>
                        
-            @foreach (var verify in Model)
+            @foreach (var user in Model)
             {
                 <tr>
-                    <td>@verify.FormattedVerificationId</td>
-                    <td>@verify.FormattedClaimId</td>
-                    <td>@verify.ICID</td>
-                    <td>@verify.QualificationName</td>
-                    <td>@verify.ModuleCode</td>
-                    <td>@verify.Semester</td>
-                    <td>@verify.Group</td>
-                    <td>@verify.LessonDate</td>
-                    <td>@verify.HoursWorked</td>
-                    <td>@verify.Rate</td>
+                    <td>@user.RFormattedRegId</td>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Contact</td>
+                    <td>@user.Address</td>
+                    <td>@user.Email</td>
+                    <td>@user.PasswordHash</td>
+                    <td>@user.Role</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
