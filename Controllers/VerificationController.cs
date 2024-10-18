@@ -17,7 +17,8 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
                 var claims = _context.Claims.ToList();
 
-                var verificationModels = claims.Select(claim => new Verification
+            //Maps  properties from the claim to the verification model.
+            var verificationModels = claims.Select(claim => new Verification
                 {
                     ClaimId = claim.ClaimId,
                     QualificationName = claim.QualificationName,
