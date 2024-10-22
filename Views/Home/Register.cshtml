@@ -1,20 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Register";
 }
-@model ContractMonthlyClaimSystem.Models.Register
+@model ContractMonthlyClaimSystem.Models.Registered
 <!--Users will enter their personal details and role
     these details will be inserted to the db 
     must be on the edit page of IC personal details
     hash password, use form validation
     replace place holders with guides
      REMOVE SAMPLE DATA IN PART 2
+     sessions or active table,store id and email -temp data hold
 
 -->
 <div class="form-container">
 
     <h3>Registration</h3>
     <h2>Enter your personal details to submit claims</h2>
-    <form id="ClaimsForm" asp-action="ClaimsForm" asp-controller="Claims" enctype="multipart/form-data" method="post">
+    <form asp-action="createUsersform" asp-controller="Users" enctype="multipart/form-data" method="post">
             <div class="field">
                 <div class="input-field">
                     <label>Name</label>
@@ -33,7 +34,7 @@
                 <input type="text" placeholder="23 Jorisson Street,Parkrest,JHB" name="address" required />
             </div>
             <div class="input-field">
-                <label>Username</label>
+                <label>Username</label><!--validate if it is email-->
                 <input type="email" placeholder="IC123456@rconect.edu.org" name="email" required />
             </div>
             <div class="input-field">
@@ -50,7 +51,7 @@
                     }, new { @class = "form-control", required = "required" })
                 </div>
             </div>
-          <button class="btn btn-primary" type="submit">Save & Sumbit</button>
-         <button class="btn btn-primary" type="submit">Back</button>
+        <button class="btn btn-primary" type="submit" id="submitButton" onclick="submitUsersFormWithConfirmation()">Save & Sumbit</button>
+         <button class="btn btn-primary" type="submit" >Back</button>
         </form>
 </div>

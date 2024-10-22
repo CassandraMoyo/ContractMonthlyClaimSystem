@@ -9,14 +9,16 @@ namespace ContractMonthlyClaimSystem.Connection
         //connect to db
 
         //used in memory databased
-        public DbSet<Claims> Claims { get; set; }//database creation
-        public DbSet<Verification> Verifications { get; set; }
-        public DbSet<Approval> Approvals { get; set; }
-
         public ClaimToDbContext(DbContextOptions<ClaimToDbContext> options) : base(options)//inject info to database
                                                                                            //constructor
         {
         }
+
+        public DbSet<Claims> Claims { get; set; }//database creation
+        public DbSet<Verification> Verifications { get; set; }
+        public DbSet<Approval> Approvals { get; set; }
+        public DbSet<Registered> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Approval>()

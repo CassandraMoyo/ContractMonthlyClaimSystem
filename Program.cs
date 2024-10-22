@@ -1,5 +1,6 @@
 using ContractMonthlyClaimSystem.Connection;
 using Microsoft.EntityFrameworkCore;
+//using ContractMonthlyClaimSystem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,21 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ClaimToDbContext>(options =>
 options.UseInMemoryDatabase("ClaimToDbContext")
 );
+
+
+//add database service = link application serve and Dbcontext =comfigure database
+builder.Services.AddDbContext<ClaimToDbContext>(options =>//specified database
+{
+    //a function that takes the option parameter
+    // look into lambda expressions
+
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");//specify connection string 
+                                                                                          //varibale to connect to the connection string
+
+    //use connection string
+    options.UseSqlServer(connectionString);
+});
+
 
 var app = builder.Build();
 

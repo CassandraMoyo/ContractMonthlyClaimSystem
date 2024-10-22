@@ -20,9 +20,7 @@ namespace ContractMonthlyClaimSystem.Controllers
 
         public IActionResult Register()
         {
-            //password
-            var user = new RegisterUserToDb();
-            user.SetPassword(model.Password);
+           
             return View();
         }
         public IActionResult Login()

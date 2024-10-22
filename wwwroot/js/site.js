@@ -40,4 +40,15 @@ function confirmFinalize() {
     return confirm('Are you sure you want to finalize this claim?');
 }
 
-//pop up messages
+/*user confirmation
+update so that if insertion to db is sucessful show this message
+else show unsuccessful
+*/
+
+
+function submitUsersFormWithConfirmation() {
+    const userConfirmed = confirm("User registration sucuessful");
+    if (!userConfirmed) {
+        event.preventDefault();
+    }
+}
