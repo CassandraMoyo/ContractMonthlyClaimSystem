@@ -15,7 +15,7 @@
 
     <h3>Registration</h3>
     <h2>Enter your personal details to submit claims</h2>
-    <form asp-action="createUsersform" asp-controller="Users" enctype="multipart/form-data" method="post">
+    <form asp-action="Register" asp-controller="Users" enctype="multipart/form-data" method="post">
             <div class="field">
                 <div class="input-field">
                     <label>Name</label>
@@ -52,6 +52,6 @@
                 </div>
             </div>
         <button class="btn btn-primary" type="submit" id="submitButton" onclick="submitUsersFormWithConfirmation()">Save & Sumbit</button>
-         <button class="btn btn-primary" type="submit" >Back</button>
+        <button class="btn btn-primary" type="button" onclick="window.history.back()">Back</button>
         </form>
 </div>

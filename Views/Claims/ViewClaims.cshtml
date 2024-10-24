@@ -63,7 +63,7 @@
                         <td>@claim.Status</td>
                         <td>
                             <!--link to form, return the Id of expense to be edited or deleted-->
-                            <button class="btn btn-primary" type="button" onclick="confirmEditForm('@Url.Action("Edit", new { id = claim.ClaimId })')">Edit</button>
+                            <a ="ClaimsForm" asp-route-id="@claim.ClaimId" onclick="confirmEditForm('@Url.Action("Edit", new { id = claim.ClaimId })')">Edit</a>
 
 
                         </td>

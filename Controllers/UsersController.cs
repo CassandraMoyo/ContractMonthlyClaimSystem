@@ -8,53 +8,151 @@ namespace ContractMonthlyClaimSystem.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly ClaimToDbContext context;
+        private readonly ClaimToDbContext _context;
+        //debug with ILogger in final
 
         public UsersController(ClaimToDbContext context)
         {
-            this.context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+
         }
 
         public IActionResult Users()
         {
-            var users = context.Users.ToList();
+            var users = _context.Users.ToList();
             return View(users);
         }
+        public IActionResult Register()
+        {
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(Registered model)
+        {
+            if (ModelState.IsValid)
+            {
+                //string trimmedPassword = model.Password.Trim();
+                //model.Password = HashPassword(model.Password);
+                _context.Users.Add(model);
+                _context.SaveChanges();
+
+                TempData["UserId"] = model.RegID;
+                TempData["UserEmail"] = model.Email;
+
+                return RedirectToAction("Login");
+            }
+            return View(model);
+        }
+        public IActionResult EditPersonalDetails()
+        {
+            int userId = (int)TempData["UserId"];
+            var user = _context.Users.Find(userId);
+            return View(user);
+        }
 
         [HttpPost]
-        
-        public IActionResult createUsers(int? id)//id is nullable as it is auto ++ and hidden, we are passing an id
+        public IActionResult EditPersonalDetails(Registered model)
         {
-            
-            
-           //check if id is null edit if not create a new expense
-            if (id != null)
+            if (ModelState.IsValid)
             {
-                var expenseInDb = context.Users.SingleOrDefault(x => x.RegID == id);//when edit button is clicked
-                                                                                     //it will hold the id of an existing espense with a matching  id
-                //return View("expenseInDb");
-            }
-            
-             return View();//id does not exist, return view
+                var user = _context.Users.Find(model.RegID);
+                if (user != null)
+                {
+                    user.Name = model.Name;
+                    user.Surname = model.Surname;
+                    user.Contact = model.Contact;
+                    user.Address = model.Address;
+                    user.Email = model.Email;
+                    user.Password = model.Password;
 
+                   /* if (!string.IsNullOrEmpty(model.Password))
+                    {
+                        // Only hash and update the password if it's been changed
+                        user.Password = HashPassword(model.Password);
+                    }*/
+
+                    user.Role = model.Role;
+
+                    _context.Users.Update(user);
+                    _context.SaveChanges();
+
+                    TempData["SuccessMessage"] = "Details updated successfully!";
+                    return RedirectToAction("Login");
+                }
+            }
+            return View(model);
         }
-        public IActionResult createUsersform(Registered model)
+
+
+
+        public IActionResult Login()
         {
-            //if id = 0 ,add new item
-            if (model.RegID == 0)
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(Registered model)
+        {
+            //string trimmedPassword = password.Trim();
+            Console.WriteLine("Login attempt: Email: " + model.Email + ", Password: " + model.Password);
+
+            var user = _context.Users.SingleOrDefault(u => u.Email == model.Email);
+
+            if (user != null)
             {
-                context.Users.Add(model);
+                Console.WriteLine("User found: " + user.Email);
+                Console.WriteLine("Stored Hashed Password: " + user.Password);
+                Console.WriteLine("Entered Password: " + model.Password);
+
+                // if (VerifyPassword(password, user.Password))
+                 if (model.Password == user.Password)
+                {
+                    Console.WriteLine("Password verification successful");
+
+                    TempData["UserId"] = user.RegID;
+                    TempData["UserName"] = user.Email;
+
+                    switch (user.Role)
+                    {
+                        case "Independent Contractor":
+                            return RedirectToAction("Claim", "Claims");
+                        case "Project Coordinator":
+                            return RedirectToAction("VerifyClaims", "Verification");
+                        case "Academic Manager":
+                            return RedirectToAction("ApproveClaims", "Approval");
+                        default:
+                            return RedirectToAction("Users");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Password verification failed");
+                }
             }
             else
             {
-                //if id exists update
-                context.Users.Update(model);
+                Console.WriteLine("User not found");
             }
 
-             context.SaveChanges();
-            
-            return RedirectToAction("Users");
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return View();
         }
+
+       /* private string HashPassword(string password)
+        {
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+            Console.WriteLine("Hashed Password: " + hashedPassword);
+            return hashedPassword;
+        }
+
+        private bool VerifyPassword(string enteredPassword, string storedHashedPassword)
+        {
+            bool result = BCrypt.Net.BCrypt.Verify(enteredPassword, storedHashedPassword);
+            Console.WriteLine("Password verification result: " + result);
+            return result;
+
+        }*/
     }
 }

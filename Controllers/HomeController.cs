@@ -1,3 +1,4 @@
+using ContractMonthlyClaimSystem.Connection;
 using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,28 +7,24 @@ namespace ContractMonthlyClaimSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //specify dababase
+        private readonly ClaimToDbContext _context;//create an object to reference to the database
+        private readonly object model;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ClaimToDbContext context)//calling model as in using constructors= instance of controller
         {
-            _logger = logger;
-        }
+             logger = logger;
+            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
 
+
+        }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Register()
-        {
-           
-            return View();
-        }
-        public IActionResult Login()
-        {
-            return View();
-        }
-
+        
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

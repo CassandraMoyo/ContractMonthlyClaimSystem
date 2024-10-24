@@ -4,12 +4,10 @@
 // Write your JavaScript code.
 //submit form confirmation
 function submitFormWithConfirmation() {
-    const userConfirmed = confirm("Are you sure you want to submit this claim?");
-    if (!userConfirmed) {
-        event.preventDefault();
+    if (confirm('Are you sure you want to submit?')) {
+        document.getElementById('ClaimsForm').submit();
     }
 }
-
 //clear form fields
 function confirmClearForm() {
     if (confirm("Are you sure you want to clear the form? This action cannot be undone.")) {
@@ -24,12 +22,15 @@ function confirmEditForm(url) {
     }
 }//reason for denying to verify claim
 function showDenialReason(button) {
-    
-    event.preventDefault();
-    const claimId = button.closest("form").querySelector("input[name='id']").value;
-    document.getElementById(`denialForm-${claimId}`).style.display = "block";
-    return confirm('This claim will reflect as denied,please state the reason!');
+    var formId = 'denialForm-' + button.value;
+    document.getElementById(formId).style.display = 'block';
 }
+
+function showDenialMessage() {
+    return confirm('Are you sure you want to deny this claim?');
+}
+
+
 //verify claim(PC)
 function showVerifiedMessage() {
     return confirm('Are you sure you want to verify this claim!');
@@ -46,9 +47,7 @@ else show unsuccessful
 */
 
 
-function submitUsersFormWithConfirmation() {
-    const userConfirmed = confirm("User registration sucuessful");
-    if (!userConfirmed) {
-        event.preventDefault();
-    }
-}
+
+//edit personal details
+
+// login

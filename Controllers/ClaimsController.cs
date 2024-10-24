@@ -61,23 +61,34 @@ namespace ContractMonthlyClaimSystem.Controllers
             }
             if (model.FileUpload != null && model.FileUpload.Length > 0)
             {
-                var uploadsRootFolder = Path.Combine("claim docs", model.FormattedClaimId);
-                Directory.CreateDirectory(uploadsRootFolder);
+                // Define allowed file extensions
+                var allowedExtensions = new[] { ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".bmp" };
 
-                var filePath = Path.Combine(uploadsRootFolder, model.FileUpload.FileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                var fileExtension = Path.GetExtension(model.FileUpload.FileName).ToLowerInvariant();
+
+                if (allowedExtensions.Contains(fileExtension))
                 {
-                    await model.FileUpload.CopyToAsync(fileStream);
-                }
+                    var uploadsRootFolder = Path.Combine("claim docs", model.FormattedClaimId);
+                    Directory.CreateDirectory(uploadsRootFolder);
+                    var filePath = Path.Combine(uploadsRootFolder, model.FileUpload.FileName);
 
-                model.FileName = model.FileUpload.FileName;
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.FileUpload.CopyToAsync(fileStream);
+                    }
+
+                    model.FileName = model.FileUpload.FileName;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Invalid file type. Only documents, pictures, and spreadsheets are allowed.");
+                }
             }
 
             await _context.SaveChangesAsync();
             // Calculate total due
             model.Total = model.HoursWorked * model.Rate;
 
-           // _context.Claims.Add(model);
             _context.SaveChanges();
             return RedirectToAction("ViewClaims");
         }
@@ -197,10 +208,5 @@ namespace ContractMonthlyClaimSystem.Controllers
         }
         return View(model);
     }
-
-        public IActionResult EditPersonalDetails()
-        {
-            return View();
-        }
     }
 }

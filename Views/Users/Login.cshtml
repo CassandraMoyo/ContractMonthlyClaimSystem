@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@model ContractMonthlyClaimSystem.Models.Registered
+<!--login page will flow into registered role
+        user will access functions according to rows
+        IC will see and edit their personal details
+        -submit a claim
+        -view claim history in table format
+        -view or edit claim
+        PC will vefiy IC work hour and submitted clai
+        AM will approve claim
+           REMOVE SAMPLE DATA IN PART 2
+    -->
+<div class="form-container">
+    <h3>Login</h3>
+    <h2>Enter your credentials to access your account</h2>
+    <form asp-action="Login" asp-controller="Users" method="post">
+        <div class="field">
+            <div class="input-field">
+                <label>Username (Email)</label>
+                <input asp-for="Email" class="form-control" type="email" placeholder="enter your email address" name="email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <label>Password</label>
+                <input asp-for="Password" class="form-control" type="password" placeholder="enter your password" name="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <a href="/Users/EditPersonalDetails">Forgot Password?</a>
+</div>

@@ -13,7 +13,7 @@
     <h3>Submit Claims</h3>
     <h2>Enter claim details and submit claim for process</H2>
     <h3>NB!:All claims will be processed within 7 woring days from the date of submission</h3>
-    <script src="C:\Users\RC_Student_lab\source\repos\ContractMonthlyClaimSystem\wwwroot\js\site.js"></script>
+    <script src="js\site.js"></script>
 
     <form id="ClaimsForm" asp-action="ClaimsForm" asp-controller="Claims" enctype="multipart/form-data" method="post">
         <div class="field">
@@ -104,7 +104,7 @@
             <input class="form-control" type="file" id="fileUpload" name="FileUpload" required/> 
       </div>
     </div>
-               <button class="btn btn-primary" type="submit" id="submitButton" onclick="submitFormWithConfirmation()">Submit</button>
+               <button class="btn btn-primary" type="submit"  id="submitButton" onclick="submitFormWithConfirmation()">Submit</button>
                <button class="btn btn-primary" type="button" onclick="confirmClearForm()">Clear Form</button>
 
    

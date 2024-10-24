@@ -69,24 +69,26 @@
                     </td>
                     <td>@verify.Status</td>
                     <td>
-                        <form asp-action="ChangeStatus" method="post">
-                            <input type="hidden" name="id" value="@verify.ClaimId" />
-                            <button class="btn btn-secondary btn-sm" type="submit" name="newStatus" value="Approved" onclick="return showVerifiedMessage">Verify</button>
-                            <button class="btn btn-secondary  btn-sm" type="submit" name="newStatus" value="Rejected" onclick="showDenialReason(this)">Deny</button>
-                        </form>
-                        <form asp-action="ChangeStatus" id="denialForm-@verify.ClaimId" style="display:none;" method="post">
-                            <input type="hidden" name="id" value="@verify.ClaimId" />
-                            <input type="hidden" name="newStatus" value="Rejected" />
-                            <select name="denialReason" required>
-                                <option value="ICD">Incorrect claim date</option>
-                                <option value="ICURL">Incorrect claim register URL</option>
-                                <option value="ICHW">Invalid claim hours</option>
-                                <option value="ICR">Invalid claim rate</option>
-                            </select>
-                            <button class="btn btn-secondary  btn-sm" type="submit">Submit</button>
-                        </form>
+                    <form asp-action="ChangeStatus" method="post">
+                        <input type="hidden" name="id" value="@verify.ClaimId" />
+                        <button class="btn btn-secondary btn-sm" type="submit" name="newStatus" value="Approved" onclick="return showVerifiedMessage()">Verify</button>
+                            <button class="btn btn-secondary btn-sm" type="button" name="newStatus" value="@verify.ClaimId" onclick="if (showDenialMessage()) { showDenialReason(this); }">Deny</button>
+                    </form>
+                    <form asp-action="ChangeStatus" id="denialForm-@verify.ClaimId" style="display:none;" method="post" onsubmit="return validateDenialForm(this)">
+                        <input type="hidden" name="id" value="@verify.ClaimId" />
+                        <input type="hidden" name="newStatus" value="Rejected" />
+                        <select name="denialReason" required>
+                            <option value="">Select a reason</option>
+                            <option value="ICD">Incorrect claim date</option>
+                            <option value="ICURL">Incorrect claim register URL</option>
+                            <option value="ICHW">Invalid claim hours</option>
+                            <option value="ICR">Invalid claim rate</option>
+                        </select>
+                        <button class="btn btn-secondary btn-sm" type="submit">Submit</button>
+                    </form>
                     </td>
                 </tr>
+  
             }
     </tbody>
 </table>

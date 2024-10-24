@@ -159,25 +159,6 @@ form .input-field input ,select{
     .table tbody tr:nth-child(odd) {
         background-color: #3a3f44;
     }
-  
-/*pop message*/
-#message {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 
-.message-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
 
 

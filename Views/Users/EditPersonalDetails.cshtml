@@ -1,50 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Edit Personal Details";
 }
+@model ContractMonthlyClaimSystem.Models.Registered
 <!--Users will view,edit and update their personal details and role
     Claims and personal details must be on the view claims and PC verification table
 -->
 <div class="form-container">
     <h3>Personal Details</h3>
     <h2>Kindly note that pressing the EDIT button will allow you to update your personal details</h2>
-    <form>
+    <form asp-action="EditPersonalDetails" asp-controller="Users" method="post">
         <h3>IC ID/AC ID/ AM ID</h3>
         <div class="field">
             <div class="input-field">
                 <label>Name</label>
-                <input type="text" placeholder="enter your first name" name="name" disabled />
+                <input asp-for="Name" class="form-control" type="text" placeholder="enter your first name" name="name" required />
             </div>
             <div class="input-field">
                 <label>Surname</label>
-                <input type="text" placeholder="edit your last name" name="surname" disabled />
+                <input asp-for="Surname" class="form-control" type="text" placeholder="edit your last name" name="surname" required />
             </div>
             <div class="input-field">
                 <label>Contact Number</label>
-                <input type="text" placeholder="edit your contact number" name="contact" disabled />
+                <input asp-for="Contact" class="form-control" type="text" placeholder="edit your contact number" name="contact" required />
             </div>
             <div class="input-field">
                 <label>Physical Address</label>
-                <input type="text" placeholder="edit your physical address" name="address" disabled />
+                <input asp-for="Address" class="form-control" type="text" placeholder="edit your physical address" name="address" required />
             </div>
             <div class="input-field">
                 <label>Username</label>
-                <input type="email" placeholder="enter your username also your email address" name="email" disabled />
+                <input asp-for="Email" class="form-control" type="email" placeholder="enter your username also your email address" name="email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="input-field">
                 <label>Password</label>
-                <input type="password" placeholder="update your password" name="password" disabled />
+                <input asp-for="Password" class="form-control" type="password" placeholder="update your password (leave blank if unchanged)" name="password" />
             </div>
             <div class="input-field">
                 <label>Role</label>
-                <select name="usertype"  disabled>
+                <select asp-for="Role" class="form-control" name="usertype" required>
                     <option value="Independent Contractor">Independent Contractor</option>
                     <option value="Project Coordinator">Project Coordinator</option>
                     <option value="Academic Manager">Academic Manager</option>
                 </select>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Edit</button>
-        <button class="btn btn-primary" type="submit">Update and Save</button>
-        <!--explore option of have one form with claims details instead of two viewa-->
+        <button class="btn btn-primary" type="submit" asp-controller="Users" asp-action="Login">Update and Save</button>
+        <button class="btn btn-primary" type="submit" asp-controller="Users" asp-action="Login">Next</button>
     </form>
+</div>
+
 </div>
