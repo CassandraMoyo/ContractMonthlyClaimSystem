@@ -50,4 +50,12 @@ else show unsuccessful
 
 //edit personal details
 
+//register
+function submitUsersFormWithConfirmation() {
+    return confirm('Successful User Registration!');
+}
+
 // login
+function showSuccessfulLogin() {
+    return confirm('Successful User Login!');
+}

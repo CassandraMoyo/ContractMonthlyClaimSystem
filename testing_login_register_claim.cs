@@ -2,48 +2,44 @@
 {
     public class testing_login_register_claim
     {
-        //login method
-        public string LogIn(string username, string password)
+        //register
+        public string Register(string name, string surname, string contact, string address, string email, string password, string role)
         {
-            //temp for message
-            string message = "";
-
-
-            //check if the user is correct
-            if (username.Equals("") && password.Equals("1234"))
+            // Check if the user input is correct
+            if (email.Equals("admin@gmail.com") && role.Equals("IC") && password.Length < 2)
             {
-                //then assign user found to message
-                message = "user found";
-            }
-            else
-            {
-                //then assign user found to message
-                message = "user not found";
-
-            }
-            return message;
-
-        }
-
-        //register method
-        public string Resgister(string username, string role, string password)
-
-        {
-            //check if the user is correct
-            if (username.Equals("") && role.Equals("IC") && password.Length >= 8)
-            {
-                //then assign user found to message
+                // Assign user found to message
                 return "user found";
             }
             else
             {
-                //then assign user found to message
+                // Assign user not found to message
                 return "user not found";
-
             }
-
-
         }
+      //login method
+      public string LogIn(string username, string password)
+        {
+
+            // Temp for message
+            string message = "";
+
+            // Check if the user is correct
+            if (username.Equals("admin@gmail.com") && password.Equals("1234"))
+            {
+                // Assign user found to message
+                message = "user found";
+            }
+            else
+            {
+                // Assign user not found to message
+                message = "user not found";
+            }
+            return message;
+        }
+
+        //claim method
+       
 
         public string Claim (string qualification, string module, string group, string date, string hours_work, string rate, string file)
         {

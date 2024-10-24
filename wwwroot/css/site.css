@@ -103,7 +103,7 @@ form .input-field label{
     font-weight: 700;
     color:white
 }
-form .input-field input ,select{
+form .input-field input ,select, a{
     height: 48px;
     outline:none;
     border: 1px rgba(0,0,0,0.4);
@@ -159,6 +159,5 @@ form .input-field input ,select{
     .table tbody tr:nth-child(odd) {
         background-color: #3a3f44;
     }
-
 
 
