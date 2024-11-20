@@ -1,6 +1,7 @@
 ﻿using ContractMonthlyClaimSystem.Connection;
 using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContractMonthlyClaimSystem.Controllers
 {
@@ -37,36 +38,58 @@ namespace ContractMonthlyClaimSystem.Controllers
             return View(claims);
         }
         //academic manager approval
-         [HttpPost]
-    public IActionResult FinalizeApproval(int id)
-    {
-        var claim = _context.Claims.Find(id);
-        if (claim != null)
+        [HttpPost]
+        public IActionResult FinalizeApproval(int id)
         {
-            var approvedClaim = new Approval
+            var claim = _context.Claims.Find(id);
+            if (claim != null)
             {
-                ClaimId = claim.ClaimId,
-                QualificationName = claim.QualificationName,
-                ModuleCode = claim.ModuleCode,
-                Group = claim.Group,
-                LessonDate = claim.LessonDate,
-                Rate = claim.Rate,
-                HoursWorked = claim.HoursWorked,
-                FileName = claim.FileName,
-                ICID = claim.ICID,
-                PCID = claim.PCID,
-                Total = claim.Total,
-                Semester = claim.Semester,
-                Status = "Approved by AC"
-            };
+                var approvedClaim = new Approval
+                {
+                    ClaimId = claim.ClaimId,
+                    QualificationName = claim.QualificationName,
+                    ModuleCode = claim.ModuleCode,
+                    Group = claim.Group,
+                    LessonDate = claim.LessonDate,
+                    Rate = claim.Rate,
+                    HoursWorked = claim.HoursWorked,
+                    FileName = claim.FileName,
+                    ICID = claim.ICID,
+                    PCID = claim.PCID,
+                    Total = claim.Total,
+                    Semester = claim.Semester,
+                    Status = "Approved by AC"
 
-            _context.Approvals.Add(approvedClaim);
-            claim.ChangeStatus("Approved by AC");
-            _context.SaveChanges();
+                }; using (var transaction = _context.Database.BeginTransaction())
+                {
+                    try
+                    { // Enable IDENTITY_INSERT
+                        _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Approvals ON");
+
+                        // Add and save changes
+                        _context.Approvals.Add(approvedClaim); claim.ChangeStatus("Approved by the AC"); _context.SaveChanges();
+                        // Disable IDENTITY_INSERT
+                        _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Approvals OFF");
+                        // Commit the transaction
+                        transaction.Commit(); TempData["SuccessMessage"] = "Claim has been successfully approved.";
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the error
+                        Console.WriteLine(ex.InnerException?.Message);
+
+                        // Rollback the transaction
+                        transaction.Rollback();
+                        // Handle the error
+                        TempData["ErrorMessage"] = "An error occurred while saving the entity changes.";
+
+                    }
+                }
+            }
+            return RedirectToAction("ApproveClaims", "approvedClaims");
         }
-
-        return RedirectToAction("ApproveClaims");
-    }
     }
 }
+
+
 

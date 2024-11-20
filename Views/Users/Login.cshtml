@@ -28,6 +28,13 @@
                 <input asp-for="Password" class="form-control" type="password" placeholder="enter your password" name="password" required />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
+
         </div>
         <button class="btn btn-primary" type="submit" onclick="showSuccessfulLogin()">Login</button>
     </form>

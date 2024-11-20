@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 //submit form confirmation
 function submitFormWithConfirmation() {
-    if (confirm('Are you sure you want to submit?')) {
+    if (confirm('Are you sure you want to submit this claim?')) {
         document.getElementById('ClaimsForm').submit();
     }
 }

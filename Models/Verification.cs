@@ -11,6 +11,7 @@ namespace ContractMonthlyClaimSystem.Models
         [NotMapped]
         public string FormattedVerificationId => $"V{VerificationId:D3}"; // Auto-formatted claim ID
         public int ClaimId { get; set; }
+        [NotMapped]
         public string FormattedClaimId => $"CL{ClaimId:D3}"; // Auto-formatted claim ID,count from 001 and +C
         [MaxLength(100)]
         public string QualificationName { get; set; } = "";

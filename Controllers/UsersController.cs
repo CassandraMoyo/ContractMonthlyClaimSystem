@@ -2,6 +2,7 @@
 using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 namespace ContractMonthlyClaimSystem.Controllers
@@ -9,12 +10,14 @@ namespace ContractMonthlyClaimSystem.Controllers
     public class UsersController : Controller
     {
         private readonly ClaimToDbContext _context;
+        private readonly ILogger<UsersController> _logger;
         //debug with ILogger in final
 
-        public UsersController(ClaimToDbContext context)
+        public UsersController(ClaimToDbContext context, ILogger<UsersController> logger)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger;
         }
 
         public IActionResult Users()
@@ -39,6 +42,7 @@ namespace ContractMonthlyClaimSystem.Controllers
 
                 TempData["UserId"] = model.RegID;
                 TempData["UserEmail"] = model.Email;
+                TempData["SuccessMessage"] = "Registration successful! You can now log in.";
 
                 return RedirectToAction("Login");
             }
@@ -46,7 +50,7 @@ namespace ContractMonthlyClaimSystem.Controllers
         }
         public IActionResult EditPersonalDetails()
         {
-            int userId = (int)TempData["UserId"];
+            int userId = (int)TempData["RegID"];
             var user = _context.Users.Find(userId);
             return View(user);
         }

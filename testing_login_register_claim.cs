@@ -1,4 +1,7 @@
-﻿namespace ContractMonthlyClaimSystem
+﻿using ContractMonthlyClaimSystem.Connection;
+using Microsoft.EntityFrameworkCore;
+
+namespace ContractMonthlyClaimSystem
 {
     public class testing_login_register_claim
     {

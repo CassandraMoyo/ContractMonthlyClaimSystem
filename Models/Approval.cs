@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 namespace ContractMonthlyClaimSystem.Models
 {
@@ -11,8 +12,10 @@ namespace ContractMonthlyClaimSystem.Models
         public string FormattedApprovalID => $"A{ApprovalID:D3}"; // Auto-formatted claim ID
         
         public int VerificationId { get; set; }
+        [NotMapped]
         public string FormattedVerificationId => $"V{VerificationId:D3}"; // Auto-formatted claim ID
         public int ClaimId { get; set; }
+        [NotMapped]
         public string FormattedClaimId => $"CL{ClaimId:D3}"; // Auto-formatted claim ID,count from 001 and +C
         public string Status { get; set; } = "Pending";
         public string DenialReason { get; set; }
