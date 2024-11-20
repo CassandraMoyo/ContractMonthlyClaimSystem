@@ -86,7 +86,7 @@ namespace ContractMonthlyClaimSystem.Controllers
                     }
                 }
             }
-            return RedirectToAction("ApproveClaims", "approvedClaims");
+            return RedirectToAction("ApproveClaims");
         }
     }
 }
