@@ -1,6 +1,7 @@
 ﻿using ContractMonthlyClaimSystem.Connection;
 using ContractMonthlyClaimSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 using System.Security.Claims;
 //PCs approve claims or deny with reason
 namespace ContractMonthlyClaimSystem.Controllers
@@ -18,10 +19,13 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
                 var claims = _context.Claims.ToList();
 
+            var counter = 1;//incrementing verificationID
+
             //Maps  properties from the claim to the verification model.
             var verificationModels = claims.Select(claim => new Verification
                 {
-                    ClaimId = claim.ClaimId,
+                 VerificationId = counter++,
+                 ClaimId = claim.ClaimId,
                     QualificationName = claim.QualificationName,
                     ModuleCode = claim.ModuleCode,
                     Group = claim.Group,

@@ -27,7 +27,9 @@ namespace ContractMonthlyClaimSystem.Connection
             modelBuilder.Entity<Approval>()
                 .Property(a => a.DenialReason)
                 .IsRequired(false); // Make DenialReason optional
+            
         }
+
     }
 }
 
