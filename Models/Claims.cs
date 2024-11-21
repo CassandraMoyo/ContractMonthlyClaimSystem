@@ -22,7 +22,6 @@ namespace ContractMonthlyClaimSystem.Models
         public IFormFile FileUpload { get; set; }
         public string FileName { get; set; }
         public int ICID { get; set; }
-        public int PCID { get; set; }
         public decimal Total { get; set; }
         public int  Semester { get; set; }
 
