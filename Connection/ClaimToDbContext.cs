@@ -30,6 +30,18 @@ namespace ContractMonthlyClaimSystem.Connection
             
         }
 
-    }
+        public void ClearDataAndResetIdentity()
+        { // Clear data from tables
+          Database.ExecuteSqlRaw("DELETE FROM Claims;");
+          Database.ExecuteSqlRaw("DELETE FROM Users;"); 
+            
+            // Reset identity columns
+            Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Claims', RESEED, 0);");
+            Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Users', RESEED, 0);"); 
+            
+            // Save changes
+           SaveChanges(); }
+
+        }
 }
 

@@ -26,9 +26,18 @@ namespace ContractMonthlyClaimSystem.Controllers
         }
         public IActionResult Claim()
         {
-            return View();
+            if (TempData["UserId"] != null)
+            {
+                int userId = (int)TempData["UserId"];
+                var user = _context.Users.Find(userId); 
+                var claims = new Claims { ICID = user.ICID }; 
+                // Count the number of claims for the user
+                ViewBag.UserInvoiceCount = _context.Claims.Count(c => c.ICID == user.ICID);
+                return View(claims); 
+            }
+            return View(new Claims());
 
-        }
+            }
         [HttpPost]
         public async Task<IActionResult> ClaimsForm(Claims model)
         {
@@ -45,6 +54,7 @@ namespace ContractMonthlyClaimSystem.Controllers
                 {
                     model.ICID = user.ICID; 
                 }
+
             }
             //if id = 0 ,add new item
             if (model.ClaimId == 0)
@@ -204,7 +214,7 @@ namespace ContractMonthlyClaimSystem.Controllers
             existingClaim.HoursWorked = model.HoursWorked;
             existingClaim.FileName = model.FileName;
             existingClaim.ICID = model.ICID;
-            existingClaim.PCID = model.PCID;
+           // existingClaim.PCID = model.PCID;
             existingClaim.Total = model.Total;
             existingClaim.Semester = model.Semester;
             

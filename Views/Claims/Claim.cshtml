@@ -20,14 +20,13 @@
         <h3>Claim ID</h3>
         <!--CLAIM ID add casting,e.g CL001-->
         <div class="input-field">
-           @*<label>Claim ID</label*@
-            <input  class="form-control" type="number" placeholder="CL001" name="CLID" asp-for="ClaimId" asp-for="ClaimId" disabled  />
+            <label>Claim ID</label> 
+            <input class="form-control" type="text" placeholder="@Model.FormattedClaimId" name="CLID" value="@Model.FormattedClaimId" disabled />
         </div>
         <!--IC ID add casting, e,g IC101298-->
-        <div class="input-field">
-            <label>IC ID</label>
-            <input class="form-control" type="number" placeholder="IC101298" name="ICID" asp-for="ICID" disabled />
-        </div>
+        <div class="input-field"> 
+            <label>IC ID</label> <input class="form-control" type="text" placeholder="@Model.ICID" name="ICID" value="@Model.ICID" disabled /> 
+            </div>
         <!--Qualification ID and name, options will depeend on assigned qualification -->
         <div class="input-field">
             <label>Qualification</label>
@@ -109,5 +108,10 @@
 
    
      </form>
+     <!-- Display User Invoice Count -->
+     <div class="input-field"> 
+         <label>Invoice Count</label> 
+         <input class="form-control" type="text" value="@ViewBag.UserInvoiceCount" disabled /> 
+     </div>
      
 </div>

@@ -64,7 +64,7 @@ namespace ContractMonthlyClaimSystem.Controllers
                     HoursWorked = claim.HoursWorked,
                     FileName = claim.FileName,
                     ICID = claim.ICID,
-                    PCID = claim.PCID,
+                    //PCID = claim.PCID,
                     Total = claim.Total,
                     Semester = claim.Semester,
                     Status = "Approved by AC"
