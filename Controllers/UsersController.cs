@@ -35,9 +35,15 @@ namespace ContractMonthlyClaimSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                //string trimmedPassword = model.Password.Trim();
-                //model.Password = HashPassword(model.Password);
-                _context.Users.Add(model);
+                if (model.Role == "Independent Contractor")
+                {
+                    model.ICID = GenerateUniqueICID(); // Ensure ICID is unique and assigned once
+                                                      
+                 }
+
+                    //string trimmedPassword = model.Password.Trim();
+                    //model.Password = HashPassword(model.Password);
+                    _context.Users.Add(model);
                 _context.SaveChanges();
 
                 TempData["UserId"] = model.RegID;
@@ -49,6 +55,22 @@ namespace ContractMonthlyClaimSystem.Controllers
             }
             return View(model);
         }
+        //generate user ID
+        private int GenerateUniqueICID()
+        { // Implement logic to generate a unique ICID
+            var random = new Random();
+            int newICID;
+
+            do
+            {
+                newICID = random.Next(1, 1000000);
+                // Generate a random ICID within a range }
+            } while (_context.Users.Any(u => u.ICID == newICID)); // Ensure the ICID is unique return newICID;
+            
+            return newICID;
+        }
+
+
         public IActionResult EditPersonalDetails()
         {
             int userId = (int)TempData["RegID"];
