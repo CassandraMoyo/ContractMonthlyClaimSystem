@@ -42,6 +42,7 @@ namespace ContractMonthlyClaimSystem.Controllers
 
                 TempData["UserId"] = model.RegID;
                 TempData["UserEmail"] = model.Email;
+                TempData["ICID"] = model.ICID; // Save ICID in TempData
                 TempData["SuccessMessage"] = "Registration successful! You can now log in.";
 
                 return RedirectToAction("Login");

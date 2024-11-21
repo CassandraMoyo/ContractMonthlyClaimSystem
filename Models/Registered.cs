@@ -24,6 +24,8 @@ namespace ContractMonthlyClaimSystem.Models
         public string Address { get; set; } = "";
         [Required, MaxLength(100)]
         public string Email { get; set; } = "";
+        public int ICID { get; set; }
+        public int PCID { get; set; }
 
         [Required, MaxLength(500)]
         public string Password { get; set; } = "";

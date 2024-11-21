@@ -36,7 +36,16 @@ namespace ContractMonthlyClaimSystem.Controllers
             {
                 return BadRequest("Model cannot be null");
             }
-
+            // Link ICID from the logged-in user
+            if (TempData["UserId"] != null) 
+            {
+                int userId = (int)TempData["UserId"];
+                var user = _context.Users.Find(userId);
+                if (user != null) 
+                {
+                    model.ICID = user.ICID; 
+                }
+            }
             //if id = 0 ,add new item
             if (model.ClaimId == 0)
             {

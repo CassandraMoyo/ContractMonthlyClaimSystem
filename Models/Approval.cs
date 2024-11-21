@@ -31,8 +31,8 @@ namespace ContractMonthlyClaimSystem.Models
         [NotMapped]
         public IFormFile FileUpload { get; set; }
         public string FileName { get; set; }
-        public string ICID { get; set; } = "";
-        public string PCID { get; set; } = "";
+        public int  ICID { get; set; }
+        public int PCID { get; set; }
         public decimal Total { get; set; }
         public int Semester { get; set; }
        
